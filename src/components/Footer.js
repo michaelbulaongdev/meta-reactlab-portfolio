@@ -13,7 +13,7 @@ const Footer = () => {
 					alignItems='center'
 					maxWidth='1024px'
 					height={16}>
-					<p>Mike • © 2022</p>
+					<p>Mike • © 2023</p>
 				</Flex>
 			</footer>
 		</Box>
