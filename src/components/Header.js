@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faHouseUser } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faLinkedin,
@@ -84,6 +84,19 @@ const Header = () => {
           </nav>
           <nav>
             <HStack spacing={8}>
+              <Link
+                activeClass="active"
+                className="nav-scroll"
+                to="landing-section"
+                ignoreCancelEvents={true}
+                offset={-80}
+                isDynamic={true}
+                smooth={true}
+                delay={100}
+                duration={500}
+              >
+                <FontAwesomeIcon icon={faHouseUser} size="1x" />
+              </Link>
               <Link
                 activeClass="active"
                 className="nav-scroll"
