@@ -21,6 +21,12 @@ const LandingSection = () => {
 	const {isLoading, response, submit} = useSubmit();
 	const {onOpen} = useAlertContext();
 
+	useEffect(() => {
+		{
+			response !== null && onOpen(response.type, response.message);
+		}
+	}, [response]);
+
 	const formik = useFormik({
 		initialValues: {
 			firstName: '',
@@ -29,7 +35,6 @@ const LandingSection = () => {
 			comment: '',
 		},
 		onSubmit: (values) => {
-			console.log(values);
 			submit(values);
 		},
 		validationSchema: Yup.object({
@@ -55,7 +60,10 @@ const LandingSection = () => {
 				<Box p={6} rounded='md' w='100%'>
 					<form onSubmit={formik.handleSubmit}>
 						<VStack spacing={4}>
-							<FormControl isInvalid={formik.errors.firstName ? true : false}>
+							<FormControl
+								isInvalid={
+									formik.errors.firstName && formik.touched ? true : false
+								}>
 								<FormLabel htmlFor='firstName'>Name</FormLabel>
 								<Input
 									id='firstName'
@@ -66,7 +74,10 @@ const LandingSection = () => {
 								/>
 								<FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
 							</FormControl>
-							<FormControl isInvalid={formik.errors.email ? true : false}>
+							<FormControl
+								isInvalid={
+									formik.errors.email && formik.touched ? true : false
+								}>
 								<FormLabel htmlFor='email'>Email Address</FormLabel>
 								<Input
 									id='email'
@@ -88,7 +99,10 @@ const LandingSection = () => {
 									<option value='other'>Other</option>
 								</Select>
 							</FormControl>
-							<FormControl isInvalid={formik.errors.comment ? true : false}>
+							<FormControl
+								isInvalid={
+									formik.errors.comment && formik.touched ? true : false
+								}>
 								<FormLabel htmlFor='comment'>Your message</FormLabel>
 								<Textarea
 									id='comment'

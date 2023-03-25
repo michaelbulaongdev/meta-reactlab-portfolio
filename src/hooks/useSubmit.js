@@ -16,7 +16,7 @@ const useSubmit = () => {
 		setLoading(true);
 		try {
 			await wait(2000);
-			if (random < 0.5) {
+			if (random < 0.1) {
 				throw new Error('Something went wrong');
 			}
 			setResponse({
