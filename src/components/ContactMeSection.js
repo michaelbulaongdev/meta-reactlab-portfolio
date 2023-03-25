@@ -47,6 +47,12 @@ const LandingSection = () => {
 		}),
 	});
 
+	const loadingMessage = (
+		<div>
+			<p>Please wait...</p>
+		</div>
+	);
+
 	return (
 		<FullScreenSection
 			isDarkBackground
@@ -117,6 +123,7 @@ const LandingSection = () => {
 							<Button type='submit' colorScheme='purple' width='full'>
 								Submit
 							</Button>
+							{response !== null && isLoading && loadingMessage}
 						</VStack>
 					</form>
 				</Box>
