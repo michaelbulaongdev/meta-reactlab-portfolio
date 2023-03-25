@@ -29,9 +29,16 @@ const LandingSection = () => {
 			comment: '',
 		},
 		onSubmit: (values) => {
-			submit(values);
+			return submit(values);
 		},
-		validationSchema: Yup.object({}),
+		validationSchema: Yup.object({
+			firstName: string().required('this field is required'),
+			email: string().email('must be a valid email'),
+			type: string().optional(),
+			comment: string()
+				.required('this field is required')
+				.min(25, 'must be at least 25 characters'),
+		}),
 	});
 
 	return (
