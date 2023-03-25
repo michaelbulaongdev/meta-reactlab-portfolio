@@ -29,13 +29,13 @@ const LandingSection = () => {
 			comment: '',
 		},
 		onSubmit: (values) => {
-			return submit(values);
+			console.log(values);
 		},
 		validationSchema: Yup.object({
-			firstName: string().required('this field is required'),
-			email: string().email('must be a valid email'),
-			type: string().optional(),
-			comment: string()
+			firstName: Yup.string().required('this field is required'),
+			email: Yup.string().email('must be a valid email'),
+			type: Yup.string().optional(),
+			comment: Yup.string()
 				.required('this field is required')
 				.min(25, 'must be at least 25 characters'),
 		}),
@@ -63,7 +63,9 @@ const LandingSection = () => {
 									onChange={formik.handleChange}
 									value={formik.values.firstName}
 								/>
-								<FormErrorMessage></FormErrorMessage>
+								{formik.errors.firstName ? (
+									<FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
+								) : null}
 							</FormControl>
 							<FormControl isInvalid={false}>
 								<FormLabel htmlFor='email'>Email Address</FormLabel>
@@ -75,7 +77,9 @@ const LandingSection = () => {
 									onChange={formik.handleChange}
 									value={formik.values.email}
 								/>
-								<FormErrorMessage></FormErrorMessage>
+								{formik.errors.email ? (
+									<FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+								) : null}
 							</FormControl>
 							<FormControl>
 								<FormLabel htmlFor='type'>Type of enquiry</FormLabel>
@@ -97,7 +101,9 @@ const LandingSection = () => {
 									onChange={formik.handleChange}
 									value={formik.values.comment}
 								/>
-								<FormErrorMessage></FormErrorMessage>
+								{formik.errors.comment ? (
+									<FormErrorMessage>{formik.errors.comment}</FormErrorMessage>
+								) : null}
 							</FormControl>
 							<Button type='submit' colorScheme='purple' width='full'>
 								Submit
