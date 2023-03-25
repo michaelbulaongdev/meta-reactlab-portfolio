@@ -29,7 +29,7 @@ const LandingSection = () => {
 			comment: '',
 		},
 		onSubmit: (values) => {
-			alert(JSON.stringify(values, null, 2));
+			submit(values);
 		},
 		validationSchema: Yup.object({}),
 	});
