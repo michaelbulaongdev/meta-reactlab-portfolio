@@ -30,14 +30,15 @@ const LandingSection = () => {
 		},
 		onSubmit: (values) => {
 			console.log(values);
+			submit(values);
 		},
 		validationSchema: Yup.object({
-			firstName: Yup.string().required('this field is required'),
-			email: Yup.string().email('must be a valid email'),
+			firstName: Yup.string().required('Required'),
+			email: Yup.string().email('Invalid email address').required('Required'),
 			type: Yup.string().optional(),
 			comment: Yup.string()
-				.required('this field is required')
-				.min(25, 'must be at least 25 characters'),
+				.required('Required')
+				.min(25, 'Must be at least 25 characters'),
 		}),
 	});
 
@@ -54,7 +55,7 @@ const LandingSection = () => {
 				<Box p={6} rounded='md' w='100%'>
 					<form onSubmit={formik.handleSubmit}>
 						<VStack spacing={4}>
-							<FormControl isInvalid={false}>
+							<FormControl isInvalid={formik.errors.firstName ? true : false}>
 								<FormLabel htmlFor='firstName'>Name</FormLabel>
 								<Input
 									id='firstName'
@@ -63,11 +64,9 @@ const LandingSection = () => {
 									onChange={formik.handleChange}
 									value={formik.values.firstName}
 								/>
-								{formik.errors.firstName ? (
-									<FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
-								) : null}
+								<FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
 							</FormControl>
-							<FormControl isInvalid={false}>
+							<FormControl isInvalid={formik.errors.email ? true : false}>
 								<FormLabel htmlFor='email'>Email Address</FormLabel>
 								<Input
 									id='email'
@@ -77,9 +76,7 @@ const LandingSection = () => {
 									onChange={formik.handleChange}
 									value={formik.values.email}
 								/>
-								{formik.errors.email ? (
-									<FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-								) : null}
+								<FormErrorMessage>{formik.errors.email}</FormErrorMessage>
 							</FormControl>
 							<FormControl>
 								<FormLabel htmlFor='type'>Type of enquiry</FormLabel>
@@ -91,7 +88,7 @@ const LandingSection = () => {
 									<option value='other'>Other</option>
 								</Select>
 							</FormControl>
-							<FormControl isInvalid={false}>
+							<FormControl isInvalid={formik.errors.comment ? true : false}>
 								<FormLabel htmlFor='comment'>Your message</FormLabel>
 								<Textarea
 									id='comment'
@@ -101,9 +98,7 @@ const LandingSection = () => {
 									onChange={formik.handleChange}
 									value={formik.values.comment}
 								/>
-								{formik.errors.comment ? (
-									<FormErrorMessage>{formik.errors.comment}</FormErrorMessage>
-								) : null}
+								<FormErrorMessage>{formik.errors.comment}</FormErrorMessage>
 							</FormControl>
 							<Button type='submit' colorScheme='purple' width='full'>
 								Submit
