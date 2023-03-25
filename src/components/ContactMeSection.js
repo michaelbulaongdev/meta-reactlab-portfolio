@@ -22,8 +22,15 @@ const LandingSection = () => {
   const { onOpen } = useAlertContext();
 
   const formik = useFormik({
-    initialValues: {},
-    onSubmit: (values) => {},
+    initialValues: {
+      firstName: "",
+      email: "",
+      type: "",
+      comment: "",
+    },
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
     validationSchema: Yup.object({}),
   });
 
@@ -39,21 +46,34 @@ const LandingSection = () => {
           Contact me
         </Heading>
         <Box p={6} rounded="md" w="100%">
-          <form>
+          <form onSubmit={formik.handleSubmit}>
             <VStack spacing={4}>
               <FormControl isInvalid={false}>
                 <FormLabel htmlFor="firstName">Name</FormLabel>
-                <Input id="firstName" name="firstName" />
+                <Input
+                  id="firstName"
+                  name="firstName"
+                  placeholder="The name of the user"
+                  onChange={formik.handleChange}
+                  value={formik.values.firstName}
+                />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={false}>
                 <FormLabel htmlFor="email">Email Address</FormLabel>
-                <Input id="email" name="email" type="email" />
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="The email of the user"
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
+                />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
               <FormControl>
                 <FormLabel htmlFor="type">Type of enquiry</FormLabel>
-                <Select id="type" name="type">
+                <Select id="type" name="type" onChange={formik.handleChange}>
                   <option value="hireMe">Freelance project proposal</option>
                   <option value="openSource">
                     Open source consultancy session
@@ -63,7 +83,14 @@ const LandingSection = () => {
               </FormControl>
               <FormControl isInvalid={false}>
                 <FormLabel htmlFor="comment">Your message</FormLabel>
-                <Textarea id="comment" name="comment" height={250} />
+                <Textarea
+                  id="comment"
+                  name="comment"
+                  height={250}
+                  placeholder="A message from the user"
+                  onChange={formik.handleChange}
+                  value={formik.values.comment}
+                />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
               <Button type="submit" colorScheme="purple" width="full">
