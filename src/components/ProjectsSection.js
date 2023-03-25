@@ -5,10 +5,11 @@ import Card from './Card';
 
 const projects = [
 	{
-		title: 'React Space',
+		title: 'Portfolio Site',
 		description:
-			'Handy tool belt to create amazing AR components in a React app, with redux integration via middleware',
+			'Portfolio site created using create-react-app and material-ui; published via gh-pages featuring sample works that include fetchAPI/html/css demos',
 		getImageSrc: () => require('../images/photo1.jpg'),
+		url: 'https://michaelbulaongdev.github.io/portfolio/',
 	},
 	{
 		title: 'React Infinite Scroll',
@@ -51,6 +52,7 @@ const ProjectsSection = () => {
 						title={project.title}
 						description={project.description}
 						imageSrc={project.getImageSrc()}
+						url={project.url}
 					/>
 				))}
 			</Box>

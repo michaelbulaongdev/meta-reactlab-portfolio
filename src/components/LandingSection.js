@@ -1,6 +1,7 @@
 import React from 'react';
 import {Avatar, Heading, VStack} from '@chakra-ui/react';
 import FullScreenSection from './FullScreenSection';
+import profilepic from '../images/profilepic.jpeg';
 
 const greeting = 'Hello, I am Mike!';
 const bio1 = 'A frontend developer';
@@ -15,7 +16,7 @@ const LandingSection = () => (
 		isDarkBackground
 		backgroundColor='#2A4365'>
 		<VStack>
-			<Avatar size='2xl' name='Mike' src='https://i.pravatar.cc/150?img=7' />
+			<Avatar size='2xl' name='Mike' src={profilepic} />
 			<p>{greeting}</p>
 			<VStack py='30px'>
 				<Heading>{bio1}</Heading>
